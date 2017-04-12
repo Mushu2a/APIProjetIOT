@@ -20,8 +20,6 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 ## Web API
 
-You can now see on http://geniuscap.fr how its working.
-
 ### List API enable
 | Method    | Url                                   | Controler@method          | Information           |
 |-----------|:-------------------------------------:|:-------------------------:|----------------------:|
@@ -34,12 +32,12 @@ You can now see on http://geniuscap.fr how its working.
 **Send HTTP request (*Before create POST*).**
 
 Ex Headers for login  
-**email**      *lastennet.l@gmail.com*  
-**username**   *mushu2a*  
-**password**   *1234*  
+**lastname**		*lastennet*  
+**firstname**		*loïc*  
+**id NFC Carte**	*xxxxxxxxx*  
 
 ### Errors
 
-**401** Unauthorized -> *You have give wrong 'Token' or email | username && password*  
+**401** Unauthorized -> *You have give wrong 'NFC id' or lastname && firstname*  
 **404** Not Found -> *You use wrong URI or use bad URL*  
 **500** Internal Server Error -> *You do something wrong ? No it's good, it's not your fault !*  
