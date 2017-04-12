@@ -50,6 +50,7 @@ class UtilisateurController extends Controller {
 		$utilisateur = Utilisateur::find($auth->idutilisateur);
 
 		$request->offsetUnset('password');
+		$request->offsetUnset('nCarteHash');
 		$updated = $utilisateur->update($request->all());
 
 		return response()->json(['updated' => $updated]);

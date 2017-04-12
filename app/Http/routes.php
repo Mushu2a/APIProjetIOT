@@ -61,4 +61,6 @@ $app->group(['prefix' => 'capsules', 'namespace' => 'App\Http\Controllers'], fun
 	$app->post('/', 'CapsuleController@updateOrCreate');
 	$app->put('/', 'CapsuleController@updateOrCreate');
 
+	$app->post('/', 'CapsuleController@typeCapsule');
+
 });

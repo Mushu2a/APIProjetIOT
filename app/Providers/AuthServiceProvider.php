@@ -34,17 +34,18 @@ class AuthServiceProvider extends ServiceProvider
 
             $lastname = $request->header('lastname');
             $firstname = $request->header('firstname');
+            $password = $request->header('password');
             $nCarte = $request->header('nCarte');
 
             if ($nCarte) {
 
                 return Utilisateur::where('nCarte', $nCarte)->first();
 
-            } elseif ($nCarte || $lastname && $firstname) {
+            } elseif ($lastname && $firstname && $password) {
 
-                $user = Utilisateur::where('lastname', $lastname)->orWhere('firstname', $firstname)->first();
+                $user = Utilisateur::where('lastname', $lastname)->where('firstname', $firstname)->where('password', $password)->first();
 
-                if ($user && app('hash')->check($nCarte, $user->nCarteHash)) {
+                if ($user && app('hash')->check($password, $user->password)) {
                     return $user;
                 }
             }
