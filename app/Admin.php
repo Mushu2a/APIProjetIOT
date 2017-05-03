@@ -13,6 +13,7 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     use Authenticatable, Authorizable;
 
     protected $table = 'admins';
+    protected $primaryKey = 'idadmin';
 
     /**
      * The attributes that are mass assignable.

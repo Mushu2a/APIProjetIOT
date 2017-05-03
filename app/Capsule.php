@@ -13,6 +13,7 @@ class Capsule extends Model implements AuthenticatableContract, AuthorizableCont
     use Authenticatable, Authorizable;
 
     protected $table = 'capsules';
+    protected $primaryKey = 'idcapsule';
 
     /**
      * The attributes that are mass assignable.

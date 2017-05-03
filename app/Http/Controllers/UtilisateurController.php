@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UtilisateurController extends Controller {
 
 	public function index() {
-		$auth = Auth::Utilisateur();
+		$auth = Auth::user();
 		$utilisateur = Utilisateur::find($auth->id);
 
 		return response()->json($utilisateur);
@@ -22,7 +22,7 @@ class UtilisateurController extends Controller {
 	}
 
 	public function all() {
-		$array = array("lastname", "firstname", "nCarte" ,"created_at");
+		$array = array("email", "lastname", "firstname", "nCarte" ,"created_at");
 		$utilisateur = Utilisateur::all($array);
 
 		return response()->json($utilisateur);

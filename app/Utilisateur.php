@@ -13,6 +13,7 @@ class Utilisateur extends Model implements AuthenticatableContract, Authorizable
     use Authenticatable, Authorizable;
 
     protected $table = 'utilisateurs';
+    protected $primaryKey = 'idutilisateur';
 
     /**
      * The attributes that are mass assignable.

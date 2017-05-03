@@ -13,6 +13,7 @@ class EstPris extends Model implements AuthenticatableContract, AuthorizableCont
     use Authenticatable, Authorizable;
 
     protected $table = 'estPris';
+    protected $primaryKey = 'idparQui';
 
     /**
      * The attributes that are mass assignable.
