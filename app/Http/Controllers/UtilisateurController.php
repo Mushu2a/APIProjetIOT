@@ -10,7 +10,7 @@ class UtilisateurController extends Controller {
 
 	public function index() {
 		$auth = Auth::user();
-		$utilisateur = Utilisateur::find($auth->id);
+		$utilisateur = Utilisateur::find($auth->idutilisateur);
 
 		return response()->json($utilisateur);
 	}

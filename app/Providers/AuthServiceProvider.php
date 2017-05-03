@@ -44,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
 
             } elseif ($lastname && $firstname && $password) {
 
-                $user = Utilisateur::where('lastname', $lastname)->where('firstname', $firstname)->where('password', $password)->first();
+                $user = Utilisateur::where('lastname', $lastname)->where('firstname', $firstname)->first();
 
                 if ($user && app('hash')->check($password, $user->password)) {
                     return $user;
@@ -52,17 +52,19 @@ class AuthServiceProvider extends ServiceProvider
 
             } elseif ($email && $password) {
 
-                $user = Utilisateur::where('email', $email)->where('password', $password)->first();
+                $user = Utilisateur::where('email', $email)->first();
 
                 if ($user && app('hash')->check($password, $user->password)) {
                     return $user;
                 }
 
-            } elseif ($password = "JsAc") {
+            } elseif ($password == "JSAC") {
 
-                $user = Utilisateur::where('isAdmin', 1)->where('password', 'JsAc')->first();
+                $user = Utilisateur::where('isAdmin', 1)->first();
 
-                return $user;
+                if ($user && app('hash')->check($password, $user->password)) {
+                    return $user;
+                }
             }
 
             return null;

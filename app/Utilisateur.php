@@ -35,6 +35,6 @@ class Utilisateur extends Model implements AuthenticatableContract, Authorizable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'idutilisateur', 'password', 'isAdmin', 'nCarte', 'nCarteHash', 'created_at', 'updated_at'
     ];
 }

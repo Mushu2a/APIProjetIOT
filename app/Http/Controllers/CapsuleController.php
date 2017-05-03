@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\Admin;
+use App\EstPris;
 use App\Capsule;
 use App\typeCapsule;
 use App\Http\Controllers\Controller;
@@ -11,16 +11,15 @@ use Illuminate\Http\Request;
 class CapsuleController extends Controller {
 
 	public function index1() {
-		$auth = Auth::user();
-		// $capsule = Capsule::where('typeCapsule', '1')->get();
+		$capsule = Capsule::where('typeCapsule', '1')->first();
 
-		return response()->json(["HOP" => $auth]);
+		return response()->json(["position" => $capsule->libelle, "nombre(s)" => $capsule->numbers]);
 	}
 
 	public function index2() {
-		$capsule = Capsule::where('typeCapsule', '2')->get();
+		$capsule = Capsule::where('typeCapsule', '2')->first();
 
-		return response()->json([""]);
+		return response()->json(["position" => $capsule->libelle, "nombre(s)" => $capsule->numbers]);
 	}
 
 	/**
@@ -31,27 +30,30 @@ class CapsuleController extends Controller {
 	 */
 	public function take($id) {
 		$auth = Auth::user();
-		$capsule = Capsule::find($id);
-		$typeCapsule = Booking::where('path_id', $path->id)->where('user_id', $auth->id)->get();
+		$capsule = Capsule::where('idcapsule', $id)->first();
 
-		if ($book->isEmpty()) {
-			if ($path->bookingSeats < $path->remainingSeats) {
-				$taking = Booking::create([
-					'user_id' => $auth->id,
-					'path_id' => $id
-				]);
+		if ($auth->nCapsule > 0 || $capsule->numbers > 0) {
 
-				// Met à jour le nombre de siège disponible
-				$path->bookingSeats = $path->bookingSeats + 1;
-				$updated = $path->save();
-			} else {
-				$taking = "You can't take this capsule ";
-			}
+			// Ajoute le capsule prise par l'utilisateur pour l'historique
+			$take = EstPris::create([
+				'unUtilisateur' => $auth->idutilisateur,
+				'uneCapsule' => $id
+			]);
+
+			// Met à jour le nombre de capsule de l'utilisateur
+			$auth->nCapsule = $auth->nCapsule - 1;
+			$updated = $auth->save();
+
+			// Met à jour le nombre de capsule disponible
+			$capsule->numbers = $capsule->numbers - 1;
+			$updated = $capsule->save();
+
+			$taken = "true";
 		} else {
-			$taking = "You have not permisions";
+			$taken = "You can't take this capsule !";
 		}
 
-		return response()->json(['taking' => $taking]);
+		return response()->json(['Caspule restante' => $auth->nCapsule, 'taken' => $taken]);
 	}
 
 	public function updateOrCreate(Request $request, $idcapsule) {

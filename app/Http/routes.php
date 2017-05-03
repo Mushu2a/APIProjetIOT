@@ -53,7 +53,7 @@ $app->group(['prefix' => 'users', 'middleware' => 'auth', 'namespace' => 'App\Ht
 /*
 * Capsules
  */
-$app->group(['prefix' => 'capsules', 'namespace' => 'App\Http\Controllers'], function($app) {
+$app->group(['prefix' => 'capsules', 'middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function($app) {
 
 	$app->get('/left', 'CapsuleController@index1');
 	$app->get('/right', 'CapsuleController@index2');
@@ -64,6 +64,6 @@ $app->group(['prefix' => 'capsules', 'namespace' => 'App\Http\Controllers'], fun
 	$app->post('/', 'CapsuleController@typeCapsule');
 
 	// Une capsule est prise
-	$app->post('/take', 'CapsuleController@take');
+	$app->post('/take/{id}', 'CapsuleController@take');
 
 });
