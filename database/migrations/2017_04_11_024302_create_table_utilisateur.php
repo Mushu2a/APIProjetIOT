@@ -15,9 +15,11 @@ class CreateTableUtilisateur extends Migration
     {
         Schema::create('utilisateurs', function(Blueprint $table) {
             $table->increments('idutilisateur');
+            $table->string('email', 50);
             $table->string('lastname', 50);
             $table->string('firstname', 50);
             $table->string('password');
+            $table->boolean('isAdmin');
             $table->string('nCarte', 255)->unique();
             $table->string('nCarteHash', 255);
             $table->timestamps();

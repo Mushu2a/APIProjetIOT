@@ -22,6 +22,31 @@ class CapsuleController extends Controller {
 		return response()->json($capsule);
 	}
 
+	public function take($id) {
+		$auth = Auth::user();
+		$capsule = Capsule::find($id);
+		$typeCapsule = Booking::where('path_id', $path->id)->where('user_id', $auth->id)->get();
+
+		if ($book->isEmpty()) {
+			if ($path->bookingSeats < $path->remainingSeats) {
+				$booking = Booking::create([
+					'user_id' => $auth->id,
+					'path_id' => $id
+				]);
+
+				// Met à jour le nombre de siège disponible
+				$path->bookingSeats = $path->bookingSeats + 1;
+				$updated = $path->save();
+			} else {
+				$booking = "You can't take this a ";
+			}
+		} else {
+			$booking = "You have not permisions";
+		}
+
+		return response()->json(['booking' => $booking]);
+	}
+
 	public function updateOrCreate(Request $request, $idcapsule) {
 		$capsule = Capsule::where('idcapsule', $idcapsule)->first();
 
@@ -34,7 +59,7 @@ class CapsuleController extends Controller {
 
 			$updateOrCreate = Capsule::create([
 				'libelle' => $request->libelle,
-				'numbers' => $request->numbers,
+				'numbers' => $request->numeric,
 			]);
 		}
 

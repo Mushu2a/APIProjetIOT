@@ -55,12 +55,14 @@ $app->group(['prefix' => 'users', 'middleware' => 'auth', 'namespace' => 'App\Ht
  */
 $app->group(['prefix' => 'capsules', 'namespace' => 'App\Http\Controllers'], function($app) {
 
-	$app->get('/', 'CapsuleController@index1');
-	$app->get('/', 'CapsuleController@index2');
+	$app->get('/left', 'CapsuleController@index1');
+	$app->get('/right', 'CapsuleController@index2');
 
 	$app->post('/', 'CapsuleController@updateOrCreate');
 	$app->put('/', 'CapsuleController@updateOrCreate');
 
 	$app->post('/', 'CapsuleController@typeCapsule');
+
+	$app->get('/take', 'CapsuleController@take');
 
 });

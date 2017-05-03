@@ -15,18 +15,18 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     protected $table = 'admins';
 
     /**
-     * The attributes that are mass granted.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [];
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass guarded.
      *
      * @var array
      */
-    protected $granted = [];
+    protected $guarded = [];
 
     /**
      * The attributes excluded from the model's JSON form.

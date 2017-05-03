@@ -16,8 +16,8 @@ class CreateTableCapsule extends Migration
         Schema::create('capsules', function(Blueprint $table) {
             $table->increments('idcapsule');
             $table->string('libelle', 50);
-            $table->integer('numbers');
-            $table->binary('picture');
+            $table->integer('numbers')->default(0);
+            $table->binary('picture')->nullable();
             $table->integer('typeCapsule')->unsigned();
 
             $table->foreign('typeCapsule')->references('idtypeCapsule')->on('typeCapsules');
