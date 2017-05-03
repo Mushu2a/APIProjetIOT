@@ -36,7 +36,7 @@ class EstPris extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->belongsTo('App\Utilisateur');
     }
 
-    public function path()
+    public function capsule()
     {
         return $this->belongsTo('App\Capsule');
     }

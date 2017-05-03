@@ -11,17 +11,24 @@ use Illuminate\Http\Request;
 class CapsuleController extends Controller {
 
 	public function index1() {
-		$capsule = Capsule::where('typeCapsule', '1')->get();
+		$auth = Auth::user();
+		// $capsule = Capsule::where('typeCapsule', '1')->get();
 
-		return response()->json($capsule);
+		return response()->json(["HOP" => $auth]);
 	}
 
 	public function index2() {
 		$capsule = Capsule::where('typeCapsule', '2')->get();
 
-		return response()->json($capsule);
+		return response()->json([""]);
 	}
 
+	/**
+	 * Enlève une capsule dans le nombre de capsule de l'utilisateur et nombre de capsule dans la table capsule.
+	 *
+	 * @param Request POST
+	 * @return 
+	 */
 	public function take($id) {
 		$auth = Auth::user();
 		$capsule = Capsule::find($id);
@@ -29,7 +36,7 @@ class CapsuleController extends Controller {
 
 		if ($book->isEmpty()) {
 			if ($path->bookingSeats < $path->remainingSeats) {
-				$booking = Booking::create([
+				$taking = Booking::create([
 					'user_id' => $auth->id,
 					'path_id' => $id
 				]);
@@ -38,13 +45,13 @@ class CapsuleController extends Controller {
 				$path->bookingSeats = $path->bookingSeats + 1;
 				$updated = $path->save();
 			} else {
-				$booking = "You can't take this a ";
+				$taking = "You can't take this capsule ";
 			}
 		} else {
-			$booking = "You have not permisions";
+			$taking = "You have not permisions";
 		}
 
-		return response()->json(['booking' => $booking]);
+		return response()->json(['taking' => $taking]);
 	}
 
 	public function updateOrCreate(Request $request, $idcapsule) {

@@ -63,6 +63,7 @@ $app->group(['prefix' => 'capsules', 'namespace' => 'App\Http\Controllers'], fun
 
 	$app->post('/', 'CapsuleController@typeCapsule');
 
-	$app->get('/take', 'CapsuleController@take');
+	// Une capsule est prise
+	$app->post('/take', 'CapsuleController@take');
 
 });
