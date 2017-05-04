@@ -36,6 +36,7 @@ class UtilisateurController extends Controller {
 		]);
 
 		$utilisateur = Utilisateur::create([
+			'email' => substr($request->lastname, 0, 1).'.'.$request->lastname.'@geniuscap.fr',
 			'lastname' => ucfirst($request->lastname),
 			'firstname' => ucfirst($request->firstname),
 			'nCarte' => ucfirst($request->nCarte),
