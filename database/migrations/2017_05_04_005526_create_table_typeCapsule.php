@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAdmin extends Migration
+class CreateTableTypeCapsule extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateTableAdmin extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function(Blueprint $table) {
-            $table->increments('idadmin');
-            $table->string('lastname', '30');
-            $table->string('firstname', '30');
-            $table->string('password', '255');
-            $table->timestamps();
+        Schema::create('typeCapsules', function(Blueprint $table) {
+            $table->increments('idtypeCapsule');
+            $table->string('libelle', '50');
         });
     }
 
@@ -29,6 +26,6 @@ class CreateTableAdmin extends Migration
      */
     public function down()
     {
-        Schema::drop('admins');
+        Schema::drop('typeCapsules');
     }
 }

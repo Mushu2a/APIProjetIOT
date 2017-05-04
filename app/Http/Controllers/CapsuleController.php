@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\EstPris;
+use App\EstPrise;
 use App\Capsule;
 use App\typeCapsule;
 use App\Http\Controllers\Controller;
@@ -28,16 +28,16 @@ class CapsuleController extends Controller {
 	 * @param Request POST
 	 * @return 
 	 */
-	public function take($id) {
+	public function take($data) {
 		$auth = Auth::user();
-		$capsule = Capsule::where('idcapsule', $id)->first();
+		$capsule = Capsule::where('libelle', $data)->first();
 
 		if ($auth->nCapsule > 0 || $capsule->numbers > 0) {
 
 			// Ajoute le capsule prise par l'utilisateur pour l'historique
-			$take = EstPris::create([
+			$take = EstPrise::create([
 				'unUtilisateur' => $auth->idutilisateur,
-				'uneCapsule' => $id
+				'uneCapsule' => $capsule->idcapsule
 			]);
 
 			// Met à jour le nombre de capsule de l'utilisateur

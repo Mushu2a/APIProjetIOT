@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class EstPris extends Model implements AuthenticatableContract, AuthorizableContract
+class EstPrise extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
-    protected $table = 'estPris';
+    protected $table = 'estPrise';
     protected $primaryKey = 'idparQui';
 
     /**
@@ -41,6 +41,4 @@ class EstPris extends Model implements AuthenticatableContract, AuthorizableCont
     {
         return $this->belongsTo('App\Capsule');
     }
-
-    public $timestamps = false;
 }

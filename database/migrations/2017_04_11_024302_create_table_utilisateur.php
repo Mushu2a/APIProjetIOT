@@ -18,6 +18,7 @@ class CreateTableUtilisateur extends Migration
             $table->string('email', 50);
             $table->string('lastname', 50);
             $table->string('firstname', 50);
+            $table->integer('nCapsule')->default(0);
             $table->string('password');
             $table->boolean('isAdmin');
             $table->string('nCarte', 255)->unique();

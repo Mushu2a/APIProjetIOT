@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEstPris extends Migration
+class CreateTableEstPrise extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTableEstPris extends Migration
      */
     public function up()
     {
-        Schema::create('estPris', function(Blueprint $table) {
+        Schema::create('estPrise', function(Blueprint $table) {
             $table->increments('idparQui');
             $table->integer('unUtilisateur')->unsigned();
             $table->integer('uneCapsule')->unsigned();
+            $table->timestamps();
 
             $table->foreign('unUtilisateur')->references('idutilisateur')->on('utilisateurs');
             $table->foreign('uneCapsule')->references('idcapsule')->on('capsules');
@@ -30,6 +31,6 @@ class CreateTableEstPris extends Migration
      */
     public function down()
     {
-        Schema::drop('etPris');
+        Schema::drop('estPrise');
     }
 }

@@ -20,7 +20,7 @@ class Capsule extends Model implements AuthenticatableContract, AuthorizableCont
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['libelle', 'numbers'];
 
     /**
      * The attributes that are mass guarded.

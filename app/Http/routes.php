@@ -64,6 +64,6 @@ $app->group(['prefix' => 'capsules', 'middleware' => 'auth', 'namespace' => 'App
 	$app->post('/', 'CapsuleController@typeCapsule');
 
 	// Une capsule est prise
-	$app->post('/take/{id}', 'CapsuleController@take');
+	$app->post('/take/{data}', 'CapsuleController@take');
 
 });

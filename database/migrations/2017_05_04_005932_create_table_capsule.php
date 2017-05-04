@@ -17,7 +17,6 @@ class CreateTableCapsule extends Migration
             $table->increments('idcapsule');
             $table->string('libelle', 50);
             $table->integer('numbers')->default(0);
-            $table->binary('picture')->nullable();
             $table->integer('typeCapsule')->unsigned();
 
             $table->foreign('typeCapsule')->references('idtypeCapsule')->on('typeCapsules');

@@ -311,11 +311,11 @@ class ComposerStaticInitd1f9bca2768351e349b56cb09f51fbb1
     );
 
     public static $classMap = array (
-        'CreateTableBookings' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_033305_create_table_bookings.php',
-        'CreateTableLocations' => __DIR__ . '/../..' . '/database/migrations/2016_12_03_154248_create_table_locations.php',
-        'CreateTablePaths' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_032241_create_table_paths.php',
-        'CreateTableScores' => __DIR__ . '/../..' . '/database/migrations/2016_11_27_201016_create_table_scores.php',
-        'CreateTableUsers' => __DIR__ . '/../..' . '/database/migrations/2016_10_31_134302_create_table_users.php',
+        'CreateTableCapsule' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_005932_create_table_capsule.php',
+        'CreateTableEstPrise' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_010141_create_table_estPrise.php',
+        'CreateTableEstPrises' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_005038_create_table_estPrise.php',
+        'CreateTableTypeCapsule' => __DIR__ . '/../..' . '/database/migrations/2017_05_04_005526_create_table_typeCapsule.php',
+        'CreateTableUtilisateur' => __DIR__ . '/../..' . '/database/migrations/2017_04_11_024302_create_table_utilisateur.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
