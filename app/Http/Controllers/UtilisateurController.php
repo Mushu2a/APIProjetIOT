@@ -30,9 +30,9 @@ class UtilisateurController extends Controller {
 
 	public function create(Request $request) {
 		$this->validate($request, [
-			'lastname' => 'required|unique:Utilisateurs,lastname',
-			'firstname' => 'required|unique:Utilisateurs,firstname',
-			'nCarte' => 'required'
+			'lastname' => 'required|unique:utilisateurs,lastname',
+			'firstname' => 'required|unique:utilisateurs,firstname',
+			'nCarte' => 'required|unique:utilisateurs,nCarte'
 		]);
 
 		$utilisateur = Utilisateur::create([
