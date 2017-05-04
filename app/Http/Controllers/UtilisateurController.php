@@ -39,6 +39,7 @@ class UtilisateurController extends Controller {
 			'email' => substr($request->lastname, 0, 1).'.'.$request->lastname.'@geniuscap.fr',
 			'lastname' => ucfirst($request->lastname),
 			'firstname' => ucfirst($request->firstname),
+			'password' => app('hash')->make("geniuscap"),
 			'nCarte' => ucfirst($request->nCarte),
 			'nCarteHash' => app('hash')->make($request->nCarte)
 		]);
