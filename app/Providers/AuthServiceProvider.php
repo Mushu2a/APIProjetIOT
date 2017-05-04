@@ -32,8 +32,8 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->app['auth']->viaRequest('api', function ($request) {
 
-            $lastname = $request->header('lastname');
-            $firstname = $request->header('firstname');
+            $lastname = ucfirst($request->header('lastname'));
+            $firstname = ucfirst($request->header('firstname'));
             $email = $request->header('email');
             $password = $request->header('password');
             $nCarte = $request->header('nCarte');

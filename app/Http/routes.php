@@ -30,7 +30,7 @@ $app->group(['prefix' => 'user', 'middleware' => 'auth', 'namespace' => 'App\Htt
 	// http://genius.cap/user -> Visualiser l'utilisateur
 	$app->get('/', 'UtilisateurController@index');
 	// http://genius.cap/user/10 -> Visualiser l'utilisateur en rapport à son ID
-	$app->get('{id}', 'UtilisateurController@find');
+	$app->get('/this/{id}', 'UtilisateurController@find');
 	
 	// http://genius.cap/user/update -> Modifier l'utilisateur
 	$app->put('/update', 'UtilisateurController@update');
@@ -41,13 +41,14 @@ $app->group(['prefix' => 'user', 'middleware' => 'auth', 'namespace' => 'App\Htt
 	$app->delete('/delete', 'UtilisateurController@delete');
 	$app->delete('/', 'UtilisateurController@delete');
 
+	// Historique journalier de prise de capsule
+	$app->get('/history', 'UtilisateurController@history');
 });
 
 $app->group(['prefix' => 'users', 'middleware' => 'auth', 'namespace' => 'App\Http\Controllers'], function($app) {
 
 	// http://genius.cap/users -> Visualiser tous les utilisateurs
 	$app->get('/', 'UtilisateurController@all');
-
 });
 
 /*
@@ -65,5 +66,4 @@ $app->group(['prefix' => 'capsules', 'middleware' => 'auth', 'namespace' => 'App
 
 	// Une capsule est prise
 	$app->post('/take/{data}', 'CapsuleController@take');
-
 });

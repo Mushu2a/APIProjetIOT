@@ -22,7 +22,8 @@ class EstPrise extends Model implements AuthenticatableContract, AuthorizableCon
      */
     protected $fillable = [
         'unUtilisateur',
-        'uneCapsule'
+        'uneCapsule',
+        'created_at'
     ];
 
     /**

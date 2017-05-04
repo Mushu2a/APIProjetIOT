@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\Utilisateur;
+use App\EstPrise;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,7 @@ class UtilisateurController extends Controller {
 	}
 
 	public function update(Request $request) {
-		$auth = Auth::Utilisateur();
+		$auth = Auth::user();
 		$utilisateur = Utilisateur::find($auth->idutilisateur);
 
 		$request->offsetUnset('password');
@@ -59,7 +60,7 @@ class UtilisateurController extends Controller {
 	}
 
 	public function updatePass(Request $request) {
-		$auth = Auth::Utilisateur();
+		$auth = Auth::user();
 		$utilisateur = Utilisateur::find($auth->id);
 
 		$this->validate($request, [
@@ -75,10 +76,19 @@ class UtilisateurController extends Controller {
 	}
 
 	public function delete(Request $request) {
-		$auth = Auth::Utilisateur();
+		$auth = Auth::user();
 		$count = Utilisateur::destroy($auth->id);
 
 		return response()->json(['deleted' => $count == 1]);
+	}
+
+	// Historique de consommation de la journée
+	public function history() {
+		$auth = Auth::user();
+
+		$history = EstPrise::where('unUtilisateur', $auth->idutilisateur)->where('created_at', '>=', date("Y-m-d h:i:s"))->count();
+
+		return response()->json(['history' => $history]);
 	}
 }
 
