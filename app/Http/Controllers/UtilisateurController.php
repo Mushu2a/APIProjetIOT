@@ -86,7 +86,7 @@ class UtilisateurController extends Controller {
 	public function history() {
 		$auth = Auth::user();
 
-		$history = EstPrise::where('unUtilisateur', $auth->idutilisateur)->where('created_at', '>=', date("Y-m-d h:i:s"))->count();
+		$history = EstPrise::where('unUtilisateur', $auth->idutilisateur)->where('created_at', '>=', date("Y-m-d"))->count();
 
 		return response()->json(['history' => $history]);
 	}
