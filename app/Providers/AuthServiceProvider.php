@@ -36,11 +36,13 @@ class AuthServiceProvider extends ServiceProvider
             $firstname = ucfirst($request->header('firstname'));
             $email = $request->header('email');
             $password = $request->header('password');
-            $nCarte = $request->header('nCarte');
+            $card = $request->header('card');
 
-            if ($nCarte) {
+            if ($card) {
 
-                return Utilisateur::where('nCarte', $nCarte)->first();
+                $user = Utilisateur::where('nCarte', $card)->first();
+
+                return $user;
 
             } elseif ($lastname && $firstname && $password) {
 
